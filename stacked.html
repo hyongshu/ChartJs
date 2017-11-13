@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>World population</title>
+    <script src="Chart.bundle.js"></script>
+    <script src="utils.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <h1>Total Remainning Reject (CV,OM,GC)</h1>
+        <h2>Stacked Bar & Line</h2>
+
+        <canvas id="myChart" width="1600" height="900"></canvas>
+    </div>
+
+    <script>
+
+        // Our labels along the x-axis
+        var years = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        // For drawing the lines
+        var LINE = [86, 114, 106, 106, 107, 111, 133, 221, 73, 78, 28, 120];
+        var YMCN = [86, 114, 106, 106, 107, 111, 133, 221, 73, 78, 28, 120];
+        var YMTT = [282, 350, 411, 502, 635, 809, 947, 142, 37, 67, 78, 120];
+        var YPMV = [168, 170, 178, 190, 203, 276, 408, 547, 675, 34, 78, 120];
+        var YMVN = [40, 20, 10, 16, 24, 38, 74, 167, 508, 784, 2478, 120];
+        var YIMM = [6, 3, 2, 2, 7, 26, 82, 172, 312, 433, 28, 120];
+
+
+        var chartData = {
+            labels: years,
+            datasets: [{
+                type: 'line',
+                label: 'LINE',
+                borderColor: window.chartColors.blue,
+                borderWidth: 2,
+                fill: false,
+                data: LINE
+            }, {
+                type: 'bar',
+                label: 'YMCN',
+                backgroundColor: window.chartColors.red,
+                data: YMCN,
+                borderColor: 'white',
+                stack: 'CV',
+                borderWidth: 2
+            }, {
+                type: 'bar',
+                label: 'YMCN',
+                backgroundColor: window.chartColors.red,
+                data: YMCN,
+                borderColor: 'white',
+                stack: 'OM',
+                borderWidth: 2
+            }, {
+                type: 'bar',
+                label: 'YMCN',
+                backgroundColor: window.chartColors.red,
+                data: YMCN,
+                borderColor: 'white',
+                stack: 'GC',
+                borderWidth: 2
+            }, {
+                type: 'bar',
+                label: 'YMTT',
+                backgroundColor: window.chartColors.green,
+                data: YMCN,
+                borderColor: 'white',
+                stack: 'CV',
+                borderWidth: 2
+            }, {
+                type: 'bar',
+                label: 'YPMV',
+                backgroundColor: window.chartColors.yellow,
+                data: YMTT,
+                borderColor: 'white',
+                stack: 'CV',
+                borderWidth: 2
+            }, {
+                type: 'bar',
+                label: 'YMVN',
+                backgroundColor: window.chartColors.blue,
+                data: YMTT,
+                borderColor: 'white',
+                stack: 'CV',
+                borderWidth: 2
+            }, {
+                type: 'bar',
+                label: 'YIMM',
+                backgroundColor: window.chartColors.red,
+                data: YMTT,
+                borderColor: 'white',
+                stack: 'CV',
+                borderWidth: 2
+            }]
+
+        };
+
+        window.onload = function () {
+            var ctx = document.getElementById("myChart").getContext("2d");
+            window.myMixedChart = new Chart(ctx, {
+                type: 'bar',
+                data: chartData,
+                options: {
+                    responsive: true,
+                    title: {
+                        //display: true,
+                        //text: 'Chart.js Combo Bar Line Chart'
+                    },
+                    tooltips: {
+                        mode: 'index',
+                        intersect: true
+                    },
+                    responsive: true,
+                    scales: {
+                        xAxes: [{
+                            stacked: true,
+                        }],
+                        yAxes: [{
+                            stacked: true
+                        }]
+                    }
+                }
+            });
+        };
+
+    </script>
+
+</body>
+
+</html>
